@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilha Contador</title>
+</head>
+<body>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 45rem;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ccbdbd;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgb(220, 208, 175);
+            padding: 160px;
+           
+        }
+        #valor{
+            width: 200px;
+            height: 340px;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+        .elemento {
+            width: 100%;
+            height: 30px;
+            border-top: 1px solid black;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+            margin-top: 4px;
+            border-radius: 4px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #d381de;
+            color: rgb(30, 30, 30);
+            
+        }
+        button:hover {
+            background-color: #99afc7;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="valor"></div>
+        <div id="contador">contador: 0</div>
+        <button onclick="stack.push()">Push</button>
+        <button onclick="stack.pop()">Pop</button>
+    </div>
+
+    <script>
+        class VisualStack {
+            constructor(elementId) {
+                this.stack = [];
+                this.stackElement = document.getElementById(elementId);
+                this.sizeElement = document.getElementById('contador');
+                this.renderStack();
+            }
+
+            renderStack() {
+                this.stackElement.innerHTML = '';
+                this.stack.forEach((item, index) => {
+                    const element = document.createElement('div');
+                    element.className = 'elemento';
+                    element.textContent = item;
+                    this.stackElement.appendChild(element);
+                });
+                this.sizeElement.textContent = `número: ${this.stack.length}`;
+            }
+
+            push() {
+                const value = prompt("insira o número na pilha:");
+                if (value) {
+                    this.stack.push(value);
+                    this.renderStack();
+                }
+            }
+
+            pop() {
+                this.stack.pop();
+                this.renderStack();
+            }
+        }
+
+        const stack = new VisualStack('valor');
+    </script>
+</body>
+</html>
+    
+    
